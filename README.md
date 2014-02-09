@@ -4,11 +4,11 @@ Quite simply, this is a plugin which does stuff when you type into chat.
 
 A example is. And its already setup..
 
-By the power invested in me
+"By the power invested in me
 
-I command the sky of the blue world!
+"I command the sky of the blue world!"
 
-Turn to night!
+"Turn to night!"
 
 This turns the world to night.
 
@@ -24,11 +24,11 @@ I've no idea how to use that. But it works already! Not so sure about the args h
 
 Example:
 
-on spell cast:
+> on spell cast:
 
-  broadcast spell
+>  broadcast spell
   
-  broadcast args (Should really be a array, but its a string I think)
+>  broadcast args (Should really be a array, but its a string I think)
   
 You can use the args to match stuff such as
 
