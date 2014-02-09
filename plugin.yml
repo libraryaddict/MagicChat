@@ -1,0 +1,4 @@
+name: MagicChat
+main: me.libraryaddict.magic.MagicChat
+version: 1.0
+softdepend: [Skript]

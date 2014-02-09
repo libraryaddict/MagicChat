@@ -1,0 +1,103 @@
+# The list of spells
+Spells:
+  # The spell name
+  DarkenNight:
+    # Does the player have to type in exactly this case format
+    CaseSensitive: false
+    # The permission to use this spell
+    Permission: magic.spells.darkennight
+    # The lines he must speak
+    PlayerChat:
+      - By the power invested in me
+      - I command the %arg% of the %arg% world!
+      - Turn to night!
+    # The plugin will replace what he said with this.
+    # This is basically for coloring in their chat
+    PluginChat:
+      - By the power invested in me
+      - I command the %arg% of the %arg% world!
+      - '&7Turn to night!'
+    # At how many chat matches does this activate.
+    # You could use it for less than 0 to make special effects
+    # If you want to pass on certain args in the message. Add to the end of the message.
+    # Such as: 3 WolfHowl 1 2 3
+    # This will pass on args 1, 2 and 3. But not 4.
+    # Else no args will be passed
+    Spells:
+      - 3 WolfHowl
+      - 3 DarkenNight
+  GiveItems:
+    Permission: magic.spells.giveitems
+    PlayerChat:
+      - Gods of the sea!
+      - Gods of the air!
+      - Gods of the earth!
+      - Please! I plea! Grant me some %arg%!
+    PluginChat:
+      - 'Gods of the &bsea!'
+      - 'Gods of the &7air!'
+      - 'Gods of the &6earth!'
+      - '&2Please! &aI plea! &dGrant me some %arg%!'
+    Spells:
+      - 4 GiveItem
+  Strike:
+    Permission: magic.spells.strike
+    PlayerChat:
+      - Oh gods of the air. Strike down the unbeliever %arg%!
+    Spells:
+      - 1 Strike 1
+  Explosion:
+    Permission: magic.spells.explosion
+    PlayerChat:
+      - True art..
+      - Is a explosion!
+    PluginChat:
+      - True art..
+      - 'Is a &c&lexplosion!'
+    Spells:
+      - 2 Explosion
+  ExplodeVictim:
+    Permission: magic.spells.explodevictim
+    PlayerChat:
+      - Hey you!
+      - Yeah you!
+      - Explode will ya!
+      - '%arg% go kaboom!'
+    PluginChat:
+      - Hey you!
+      - Yeah you
+      - 'Explode for me will ya!'
+      - '%arg% go &c&lkaboom!'
+    Spells:
+      - 4 Explosion 1
+  AllowFly:
+    Permission: magic.spells.allowfly
+    PlayerChat:
+      - My father used to tell me tales
+      - Of when we used to fly
+      - Those days were long ago
+      - But I believe..
+      - Some of us can still fly
+      - And it just takes a little concentration
+    Spells:
+      - 6 SetAllowFly
+  DenyFly:
+    Permission: magic.spells.denyfly
+    PlayerChat:
+      - We used to think we could fly
+      - But this was a dream
+      - Our feet are heavy weights
+    Spells:
+      - 3 SetDenyFly 1
+  SummonEnderdragon:
+    Permission: magic.spells.summonenderdragon
+    PlayerChat:
+      - Lord of chaos
+      - King of fury
+      - Death of nations
+      - Hatred incarnated
+      - He has come for us
+      - I summon thee
+      - Enderdragon!
+    Spells:
+      - 6 SummonEnderdragon
