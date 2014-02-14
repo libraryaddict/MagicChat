@@ -7,10 +7,7 @@ import java.util.List;
 import me.libraryaddict.magic.types.ChatSpell;
 import me.libraryaddict.magic.types.ClassGetter;
 import me.libraryaddict.magic.types.Configurable;
-import me.libraryaddict.magic.types.ExprSpellArgs;
-import me.libraryaddict.magic.types.ExprSpellName;
 import me.libraryaddict.magic.types.Spell;
-import me.libraryaddict.magic.types.SpellCast;
 import me.libraryaddict.magic.types.SpellCastEvent;
 import net.minecraft.util.org.apache.commons.lang3.ArrayUtils;
 
@@ -24,11 +21,6 @@ import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import ch.njol.skript.Skript;
-import ch.njol.skript.classes.SerializableGetter;
-import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.registrations.EventValues;
 
 public class MagicChat extends JavaPlugin implements Listener {
 
@@ -94,34 +86,11 @@ public class MagicChat extends JavaPlugin implements Listener {
         }
     }
 
-    @SuppressWarnings("serial")
     public void onEnable() {
         MagicApi.setMainPlugin(this);
         Plugin skriptPlugin = Bukkit.getPluginManager().getPlugin("Skript");
         if (skriptPlugin != null) {
-            Skript.registerEvent("Spell Cast", SpellCast.class, SpellCastEvent.class, "spell cast", "magic spell")
-                    .description(new String[] { "Called when a spell is cast." }).examples(new String[] { "spell cast" });
-            EventValues.registerEventValue(SpellCastEvent.class, Player.class, new SerializableGetter<Player, SpellCastEvent>() {
-                @Override
-                public Player get(SpellCastEvent e) {
-                    return e.getPlayer();
-                }
-            }, 0);
-            EventValues.registerEventValue(SpellCastEvent.class, String.class, new SerializableGetter<String, SpellCastEvent>() {
-                @Override
-                public String get(SpellCastEvent e) {
-                    return e.getSpell();
-                }
-            }, 0);
-            EventValues.registerEventValue(SpellCastEvent.class, String[].class,
-                    new SerializableGetter<String[], SpellCastEvent>() {
-                        @Override
-                        public String[] get(SpellCastEvent e) {
-                            return e.getArgs();
-                        }
-                    }, 0);
-            Skript.registerExpression(ExprSpellName.class, String.class, ExpressionType.SIMPLE, "spell", "spell name");
-            Skript.registerExpression(ExprSpellArgs.class, String.class, ExpressionType.SIMPLE, "args", "spell args");
+            LoadSkript.loadSkript();
         }
         for (Class c : ClassGetter.getClassesForPackage(this, "me.libraryaddict.magic.spells")) {
             if (Spell.class.isAssignableFrom(c)) {
