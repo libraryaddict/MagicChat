@@ -89,6 +89,7 @@ public class MagicChat extends JavaPlugin implements Listener {
 
     public void onEnable() {
         MagicApi.setMainPlugin(this);
+        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
         Plugin skriptPlugin = Bukkit.getPluginManager().getPlugin("Skript");
         if (skriptPlugin != null) {
             LoadSkript.loadSkript();

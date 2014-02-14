@@ -135,11 +135,11 @@ Spells:
   EveryoneGetsSome:
     Permission: magic.spells.EveryoneGetsSome
     PlayerChat:
-      - 'Everyone gets some %arg%!'
+      - '%arg% gets some %arg%!'
     PluginChat:
-      - '&6Everyone gets some %arg%!'
+      - '&6%arg% gets some %arg%!'
     Spells:
-      - 1 GiveEveryone 1
+      - 1 GiveEveryone 1 2
   DieForMe:
     Permission: magic.spells.DieForMe
     PlayerChat:
@@ -167,3 +167,28 @@ Spells:
       - '%arg% can no longer talk'
     Spells:
       - 1 MutePlayer 1
+  RemoveItem:
+    Permission: magic.spells.removeitem
+    PlayerChat:
+     - '%arg%'
+     - 'Please empty your pockets of %arg%'
+    Spells:
+      - 2 RemoveItem 1 
+  RunCommand:
+    Permission: magic.spells.runcommand
+    PlayerChat:
+      - '%arg% please run the command %arg%'
+    Spells:
+      - 1 RunCommand 1 2
+  RunCommandAsOp:
+    Permission: magic.spells.runcommandasop
+    PlayerChat:
+      - '%arg% please run as op the command %arg%'
+    Spells:
+      - 1 RunCommandAsOp 1 2
+  JoinServer:
+    Permission: magic.spells.joinserver
+    PlayerChat:
+      - '%arg% join server %arg%'
+    Spells:
+      - 1 JoinServer 1 2
