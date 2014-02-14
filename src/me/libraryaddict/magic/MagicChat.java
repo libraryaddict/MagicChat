@@ -11,6 +11,7 @@ import me.libraryaddict.magic.types.ExprSpellName;
 import me.libraryaddict.magic.types.Spell;
 import me.libraryaddict.magic.types.SpellCast;
 import me.libraryaddict.magic.types.SpellCastEvent;
+import net.minecraft.util.org.apache.commons.lang3.ArrayUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -48,7 +49,12 @@ public class MagicChat extends JavaPlugin implements Listener {
                 int spellLine = spell.getMatches(chat);
                 if (spellLine > 0) {
                     hasMatch = true;
-                    String[] args = spell.getArgs(ChatColor.stripColor(event.getMessage()), spell.getPlayerChat()[spellLine - 1]);
+                    String[] args = new String[0];
+                    for (int i = 0; i < spellLine; i++) {
+                        String msg = chat.get((chat.size() - 1) - ((spellLine - 1) - i));
+                        String[] newArgs = spell.getArgs(msg, spell.getPlayerChat()[i]);
+                        args = ArrayUtils.addAll(args, newArgs);
+                    }
                     HashMap<String, int[]> spells = spell.getSpellsToRun(spellLine);
                     for (String spellName : spells.keySet()) {
                         int[] toPass = spells.get(spellName);

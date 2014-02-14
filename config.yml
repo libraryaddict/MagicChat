@@ -23,6 +23,7 @@ Spells:
     # Such as: 3 WolfHowl 1 2 3
     # This will pass on args 1, 2 and 3. But not 4.
     # Else no args will be passed
+    # Args are stored. So the arg in the first line is still usable in the last line.
     Spells:
       - 3 WolfHowl
       - 3 DarkenNight
@@ -39,7 +40,7 @@ Spells:
       - 'Gods of the &6earth!'
       - '&2Please! &aI plea! &dGrant me some %arg%!'
     Spells:
-      - 4 GiveItem
+      - 4 GiveItem 1
   Strike:
     Permission: magic.spells.strike
     PlayerChat:
