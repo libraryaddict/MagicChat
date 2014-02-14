@@ -6,6 +6,7 @@ import java.util.List;
 
 import me.libraryaddict.magic.types.ChatSpell;
 import me.libraryaddict.magic.types.ClassGetter;
+import me.libraryaddict.magic.types.Configurable;
 import me.libraryaddict.magic.types.ExprSpellArgs;
 import me.libraryaddict.magic.types.ExprSpellName;
 import me.libraryaddict.magic.types.Spell;
@@ -95,8 +96,9 @@ public class MagicChat extends JavaPlugin implements Listener {
 
     @SuppressWarnings("serial")
     public void onEnable() {
-        Plugin plugin = Bukkit.getPluginManager().getPlugin("Skript");
-        if (plugin != null) {
+        MagicApi.setMainPlugin(this);
+        Plugin skriptPlugin = Bukkit.getPluginManager().getPlugin("Skript");
+        if (skriptPlugin != null) {
             Skript.registerEvent("Spell Cast", SpellCast.class, SpellCastEvent.class, "spell cast", "magic spell")
                     .description(new String[] { "Called when a spell is cast." }).examples(new String[] { "spell cast" });
             EventValues.registerEventValue(SpellCastEvent.class, Player.class, new SerializableGetter<Player, SpellCastEvent>() {
@@ -125,6 +127,9 @@ public class MagicChat extends JavaPlugin implements Listener {
             if (Spell.class.isAssignableFrom(c)) {
                 try {
                     Spell spell = (Spell) c.newInstance();
+                    if (spell instanceof Configurable) {
+                        ((Configurable) spell).loadConfig();
+                    }
                     MagicApi.registerSpell(spell);
                 } catch (Exception e) {
                     e.printStackTrace();

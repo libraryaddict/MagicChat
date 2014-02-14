@@ -14,7 +14,7 @@ public class ChatSpell {
 
     public ChatSpell(String spellName, String permission, boolean isCaseSensitive, String[] playerChat, String[] pluginChat) {
         this.spellName = spellName;
-        this.permission = permission;
+        this.permission = (permission == null ? null : permission.toLowerCase());
         this.isCaseSensitive = isCaseSensitive;
         this.playerChat = playerChat;
         this.pluginChat = pluginChat;

@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 import me.libraryaddict.magic.types.Spell;
 
-public class Strike extends Spell {
+public class KillPlayers extends Spell {
 
     @Override
     public void invokeSpell(Player player, String[] args) {
@@ -15,7 +15,7 @@ public class Strike extends Spell {
             for (String name : names) {
                 Player p = Bukkit.getPlayer(name);
                 if (p != null) {
-                    p.getWorld().strikeLightning(p.getLocation());
+                    p.damage(999D);
                 }
             }
         }

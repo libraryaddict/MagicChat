@@ -44,4 +44,14 @@ public class MagicApi {
             throw new RuntimeException("[MagicChat] The magic spell " + spell.getName() + " has already been registered!");
         }
     }
+
+    private static MagicChat mainPlugin;
+
+    public static MagicChat getMainPlugin() {
+        return mainPlugin;
+    }
+
+    public static void setMainPlugin(MagicChat magicChat) {
+        mainPlugin = magicChat;
+    }
 }

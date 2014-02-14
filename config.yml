@@ -47,6 +47,12 @@ Spells:
       - Oh gods of the air. Strike down the unbeliever %arg%!
     Spells:
       - 1 Strike 1
+  Strike2:
+    Permission: magic.spells.strike
+    PlayerChat:
+      - Oh gods of the air. Strike down the unbelievers %arg%!
+    Spells:
+      - 1 Strike 1
   Explosion:
     Permission: magic.spells.explosion
     PlayerChat:
@@ -102,3 +108,56 @@ Spells:
       - Enderdragon!
     Spells:
       - 6 SummonEnderdragon
+  BanNoTimeOrReason:
+    Permission: magic.spells.BanNoTimeOrReason
+    PlayerChat:
+      - '%arg%. You are banned!'
+    PluginChat:
+      - '%arg%. &4You are &lbanned!'
+    Spells:
+      - 1 Ban 1
+  BanNoReason:
+    Permission: magic.spells.BanNoReason
+    PlayerChat:
+      - '%arg% you are to be banned for %arg%!'
+    PluginChat:
+      - '&4%arg%&c you are to be &4banned&c for &4%arg%!'
+    Spells:
+      - 1 Ban 1 2
+  Ban:
+    Permission: magic.spells.ban
+    PlayerChat:
+      - '%arg% you are banned for %arg% for %arg%'
+    PluginChat:
+      - '&4%arg%&c you are &4banned&c for &4%arg%&c for &4%arg%'
+    Spells:
+      - 1 Ban 1 2 3
+  EveryoneGetsSome:
+    Permission: magic.spells.EveryoneGetsSome
+    PlayerChat:
+      - 'Everyone gets some %arg%!'
+    PluginChat:
+      - '&6Everyone gets some %arg%!'
+    Spells:
+      - 1 GiveEveryone 1
+  DieForMe:
+    Permission: magic.spells.DieForMe
+    PlayerChat:
+      - '%arg%'
+      - Die for me
+    Spells:
+      - 2 KillPlayers 1
+  ChangeTime:
+    Permission: magic.spells.changetime
+    PlayerChat:
+      - Tick tock
+      - Tick tock
+      - The time is now %arg%
+    Spells:
+      - 3 ChangeTime 1
+  MutePlayer:
+    Permission: magic.spells.muteplayer
+    PlayerChat:
+      - %arg%. You can no longer talk
+    Spells:
+      - 1 MutePlayer 1
