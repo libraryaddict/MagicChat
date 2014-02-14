@@ -43,8 +43,9 @@ public class MagicChat extends JavaPlugin implements Listener {
                 if (spellLine > 0) {
                     hasMatch = true;
                     String[] args = new String[0];
+                    int chatSize = chat.size() - spellLine;
                     for (int i = 0; i < spellLine; i++) {
-                        String msg = chat.get((chat.size() - 1) - ((spellLine - 1) - i));
+                        String msg = chat.get(chatSize + i);
                         String[] newArgs = spell.getArgs(msg, spell.getPlayerChat()[i]);
                         args = ArrayUtils.addAll(args, newArgs);
                     }

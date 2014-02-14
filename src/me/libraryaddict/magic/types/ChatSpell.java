@@ -43,6 +43,9 @@ public class ChatSpell {
                 }
             }
         }
+        if (arg.length() > 0) {
+            args.add(arg);
+        }
         if ((isCaseSensitive() && builder.toString().equals(origMessage))
                 || (!isCaseSensitive() && builder.toString().equalsIgnoreCase(origMessage))) {
             return args.toArray(new String[args.size()]);

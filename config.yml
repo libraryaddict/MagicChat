@@ -9,13 +9,13 @@ Spells:
     # The lines he must speak
     PlayerChat:
       - By the power invested in me
-      - I command the %arg% of the %arg% world!
+      - 'I command the %arg% of the %arg% world!'
       - Turn to night!
     # The plugin will replace what he said with this.
     # This is basically for coloring in their chat
     PluginChat:
       - By the power invested in me
-      - I command the %arg% of the %arg% world!
+      - 'I command the %arg% of the %arg% world!'
       - '&7Turn to night!'
     # At how many chat matches does this activate.
     # You could use it for less than 0 to make special effects
@@ -33,7 +33,7 @@ Spells:
       - Gods of the sea!
       - Gods of the air!
       - Gods of the earth!
-      - Please! I plea! Grant me some %arg%!
+      - 'Please! I plea! Grant me some %arg%!'
     PluginChat:
       - 'Gods of the &bsea!'
       - 'Gods of the &7air!'
@@ -44,13 +44,13 @@ Spells:
   Strike:
     Permission: magic.spells.strike
     PlayerChat:
-      - Oh gods of the air. Strike down the unbeliever %arg%!
+      - 'Oh gods of the air. Strike down the unbeliever %arg%!'
     Spells:
       - 1 Strike 1
   Strike2:
     Permission: magic.spells.strike
     PlayerChat:
-      - Oh gods of the air. Strike down the unbelievers %arg%!
+      - 'Oh gods of the air. Strike down the unbelievers %arg%!'
     Spells:
       - 1 Strike 1
   Explosion:
@@ -152,12 +152,18 @@ Spells:
     PlayerChat:
       - Tick tock
       - Tick tock
-      - The time is now %arg%
+      - 'The time is now %arg%'
     Spells:
       - 3 ChangeTime 1
   MutePlayer:
     Permission: magic.spells.muteplayer
     PlayerChat:
-      - %arg%. You can no longer talk
+      - '%arg%. You can no longer talk'
+    Spells:
+      - 1 MutePlayer 1
+  MutePlayer1:
+    Permission: magic.spells.muteplayer
+    PlayerChat:
+      - '%arg% can no longer talk'
     Spells:
       - 1 MutePlayer 1
