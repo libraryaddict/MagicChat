@@ -20,10 +20,10 @@ public class ExprSpellArgs extends SimpleExpression<String> {
         if (!(e instanceof SpellCastEvent))
             return null;
         String[] args = ((SpellCastEvent) e).getArgs();
-        if (args.length == 0) {
+        if (index != 40 && args.length <= index) {
             return new String[0];
         }
-        return new String[] { args[(args.length <= index ? args.length - 1 : index)] };
+        return new String[] { args[index == 40 ? args.length - 1 : index] };
     }
 
     @Override
