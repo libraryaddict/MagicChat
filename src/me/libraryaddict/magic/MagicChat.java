@@ -29,7 +29,7 @@ public class MagicChat extends JavaPlugin implements Listener {
     @EventHandler
     public void onChat(PlayerChatEvent event) {
         ArrayList<String> chat = new ArrayList<String>();
-        Player p = event.getPlayer();
+        final Player p = event.getPlayer();
         if (playerChat.containsKey(p.getName())) {
             chat = playerChat.get(p.getName());
         } else {
@@ -50,9 +50,9 @@ public class MagicChat extends JavaPlugin implements Listener {
                         args = ArrayUtils.addAll(args, newArgs);
                     }
                     HashMap<String, int[]> spells = spell.getSpellsToRun(spellLine);
-                    for (String spellName : spells.keySet()) {
+                    for (final String spellName : spells.keySet()) {
                         int[] toPass = spells.get(spellName);
-                        String[] newArgs;
+                        final String[] newArgs;
                         if (toPass.length == 0) {
                             newArgs = new String[0];
                         } else {
@@ -64,11 +64,15 @@ public class MagicChat extends JavaPlugin implements Listener {
                                 }
                             }
                         }
-                        Spell rSpell = MagicApi.getSpell(spellName);
-                        if (rSpell != null) {
-                            rSpell.invokeSpell(p, newArgs);
-                        }
-                        Bukkit.getPluginManager().callEvent(new SpellCastEvent(p, spellName, newArgs));
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+                            public void run() {
+                                Spell rSpell = MagicApi.getSpell(spellName);
+                                if (rSpell != null) {
+                                    rSpell.invokeSpell(p, newArgs);
+                                }
+                                Bukkit.getPluginManager().callEvent(new SpellCastEvent(p, spellName, newArgs));
+                            }
+                        });
                     }
                     if (spell.isReplaceChat()) {
                         String rp = spell.getPluginChat()[spellLine - 1];

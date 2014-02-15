@@ -18,7 +18,7 @@ public class GiveEveryone extends Spell {
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give " + p.getName() + " " + args[0]);
                 } else if (name.equalsIgnoreCase("everyone")) {
                     for (Player pl : Bukkit.getOnlinePlayers()) {
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give " + pl.getName() + " " + args[0]);
+                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give " + pl.getName() + " " + args[1]);
                     }
                 }
             }

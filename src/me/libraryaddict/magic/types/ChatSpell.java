@@ -26,10 +26,14 @@ public class ChatSpell {
         char[] chars = playerMessage.toCharArray();
         String arg = "";
         boolean b = false;
+        if (!isCaseSensitive()) {
+            origMessage = origMessage.toLowerCase();
+        }
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
-            if (origMessage.startsWith(builder.toString() + c)) {
-                builder.append(c);
+            char c1 = isCaseSensitive() ? c : Character.toLowerCase(c);
+            if (origMessage.startsWith(builder.toString() + c1)) {
+                builder.append(c1);
                 if (arg.length() > 0) {
                     b = false;
                     args.add(arg);
@@ -46,8 +50,7 @@ public class ChatSpell {
         if (arg.length() > 0) {
             args.add(arg);
         }
-        if ((isCaseSensitive() && builder.toString().equals(origMessage))
-                || (!isCaseSensitive() && builder.toString().equalsIgnoreCase(origMessage))) {
+        if (builder.toString().equals(origMessage)) {
             return args.toArray(new String[args.size()]);
         }
         return null;
