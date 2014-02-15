@@ -10,7 +10,7 @@ public class RunCommandAsOp extends Spell {
     @Override
     public void invokeSpell(Player player, String[] args) {
         if (args.length > 1) {
-            args[0] = args[0].replaceAll("[^a-zA-Z0-9\\s]", "");
+            args[0] = args[0].replaceAll("[^a-zA-Z0-9_\\s]", "");
             String[] names = args[0].split(" ");
             if (args[1].startsWith("/")) {
                 args[1] = args[1].substring(1);
