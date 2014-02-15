@@ -1,6 +1,11 @@
 package me.libraryaddict.magic.types;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
 import org.bukkit.event.Event;
+
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
@@ -20,8 +25,21 @@ public class ExprSpellArgs extends SimpleExpression<String> {
     }
 
     @Override
+    public String[] getAll(Event e) {
+        return get(e);
+    }
+
+    @Override
     public Class<? extends String> getReturnType() {
         return String.class;
+    }
+
+    @Override
+    public Iterator<String> iterator(final Event e) {
+        if (e instanceof SpellCastEvent) {
+            return Arrays.asList(((SpellCastEvent) e).getArgs()).iterator();
+        }
+        return new ArrayList<String>().iterator();
     }
 
     @Override
@@ -35,7 +53,7 @@ public class ExprSpellArgs extends SimpleExpression<String> {
 
     @Override
     public boolean isSingle() {
-        return true;
+        return false;
     }
 
     @Override
