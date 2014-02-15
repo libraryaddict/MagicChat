@@ -23,18 +23,6 @@ public class LoadSkript {
                 return e.getPlayer();
             }
         }, 0);
-        EventValues.registerEventValue(SpellCastEvent.class, String.class, new SerializableGetter<String, SpellCastEvent>() {
-            @Override
-            public String get(SpellCastEvent e) {
-                return e.getSpell();
-            }
-        }, 0);
-        EventValues.registerEventValue(SpellCastEvent.class, String[].class, new SerializableGetter<String[], SpellCastEvent>() {
-            @Override
-            public String[] get(SpellCastEvent e) {
-                return e.getArgs();
-            }
-        }, 0);
         Skript.registerExpression(ExprSpellName.class, String.class, ExpressionType.SIMPLE, "spell", "spell name");
         Skript.registerExpression(ExprSpellArgs.class, String.class, ExpressionType.SIMPLE, "args", "spell args");
     }
