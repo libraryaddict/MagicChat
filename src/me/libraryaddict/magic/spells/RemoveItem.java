@@ -12,7 +12,7 @@ public class RemoveItem extends Spell {
     @Override
     public void invokeSpell(Player player, String[] args) {
         if (args.length > 1) {
-            args[0] = args[0].replaceAll("[^A-Za-z0-9][^a-zA-Z0-9\\s]", "");
+            args[0] = args[0].replaceAll("[^a-zA-Z0-9\\s]", "");
             Material mat = null;
             try {
                 mat = Material.valueOf(args[1].toUpperCase());
