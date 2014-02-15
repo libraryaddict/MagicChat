@@ -30,17 +30,16 @@ public class ChatSpell {
             origMessage = origMessage.toLowerCase();
         }
         for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-            char c1 = isCaseSensitive() ? c : Character.toLowerCase(c);
-            if (origMessage.startsWith(builder.toString() + c1)) {
-                builder.append(c1);
+            char c = isCaseSensitive() ? chars[i] : Character.toLowerCase(chars[i]);
+            if (origMessage.startsWith(builder.toString() + c)) {
+                builder.append(c);
                 if (arg.length() > 0) {
                     b = false;
                     args.add(arg);
                     arg = "";
                 }
             } else {
-                arg += c;
+                arg += chars[i];
                 if (!b) {
                     b = true;
                     builder.append("%arg%");
