@@ -10,6 +10,18 @@ import org.bukkit.entity.Player;
 
 public abstract class Spell {
 
+    public YamlConfiguration getConfig() {
+        File configFile = new File(MagicApi.getMainPlugin().getDataFolder(), getName() + ".yml");
+        if (!configFile.exists()) {
+            try {
+                configFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return YamlConfiguration.loadConfiguration(configFile);
+    }
+
     public String getName() {
         return getClass().getSimpleName();
     }
@@ -30,17 +42,5 @@ public abstract class Spell {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public YamlConfiguration getConfig() {
-        File configFile = new File(MagicApi.getMainPlugin().getDataFolder(), getName() + ".yml");
-        if (!configFile.exists()) {
-            try {
-                configFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return YamlConfiguration.loadConfiguration(configFile);
     }
 }

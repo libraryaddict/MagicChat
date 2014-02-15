@@ -1,32 +1,29 @@
 package me.libraryaddict.magic.types;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-
 import org.bukkit.event.Event;
 
-import ch.njol.skript.ScriptLoader;
-import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.skript.log.ErrorQuality;
+import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.util.Utils;
 import ch.njol.util.Kleenean;
+import ch.njol.util.StringUtils;
 
 @SuppressWarnings("serial")
 public class ExprSpellArgs extends SimpleExpression<String> {
 
-    @Override
-    protected String[] get(Event e) {
-        if (!(e instanceof SpellCastEvent))
-            return new String[0];
-        return ((SpellCastEvent) e).getArgs();
-    }
+    private int index;
 
     @Override
-    public String[] getAll(Event e) {
-        return get(e);
+    protected String[] get(final Event e) {
+        if (!(e instanceof SpellCastEvent))
+            return null;
+        String[] args = ((SpellCastEvent) e).getArgs();
+        if (args.length == 0) {
+            return new String[0];
+        }
+        return new String[] { args[(args.length <= index ? args.length - 1 : index)] };
     }
 
     @Override
@@ -35,29 +32,44 @@ public class ExprSpellArgs extends SimpleExpression<String> {
     }
 
     @Override
-    public Iterator<String> iterator(final Event e) {
-        if (e instanceof SpellCastEvent) {
-            return Arrays.asList(((SpellCastEvent) e).getArgs()).iterator();
-        }
-        return new ArrayList<String>().iterator();
-    }
-
-    @Override
-    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-        if (!ScriptLoader.isCurrentEvent(SpellCastEvent.class)) {
-            Skript.error("The expression 'spell args' can only be used in spell cast events", ErrorQuality.SEMANTIC_ERROR);
-            return false;
+    public boolean init(final Expression<?>[] exprs, final int matchedPattern, final Kleenean isDelayed, final ParseResult parser) {
+        switch (matchedPattern) {
+        case 0:
+            /**
+             * No args will go this high.. Right?
+             */
+            index = 40;
+            break;
+        case 1:
+        case 2:
+            index = Utils.parseInt(parser.regexes.get(0).group(1));
+            break;
+        case 3:
+            index = 0;
+            break;
+        case 4:
+        case 5:
+            index = parser.regexes.size() > 0 ? Utils.parseInt(parser.regexes.get(0).group()) : -1;
+            break;
         }
         return true;
     }
 
     @Override
-    public boolean isSingle() {
-        return false;
+    public boolean isLoopOf(final String s) {
+        return s.equalsIgnoreCase("argument");
     }
 
     @Override
-    public String toString(Event e, boolean debug) {
-        return "spell args";
+    public boolean isSingle() {
+        return true;
     }
+
+    @Override
+    public String toString(final Event e, final boolean debug) {
+        if (e == null)
+            return "the " + StringUtils.fancyOrderNumber(index) + " argument";
+        return Classes.getDebugMessage(getArray(e));
+    }
+
 }

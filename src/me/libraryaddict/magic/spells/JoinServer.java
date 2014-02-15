@@ -11,17 +11,6 @@ import me.libraryaddict.magic.MagicApi;
 import me.libraryaddict.magic.types.Spell;
 
 public class JoinServer extends Spell {
-    private void joinServer(Player player, String server) {
-        ByteArrayOutputStream b = new ByteArrayOutputStream();
-        DataOutputStream out = new DataOutputStream(b);
-        try {
-            out.writeUTF("Connect");
-            out.writeUTF(server); // Target Server
-        } catch (IOException e) {
-        }
-        player.sendPluginMessage(MagicApi.getMainPlugin(), "BungeeCord", b.toByteArray());
-    }
-
     @Override
     public void invokeSpell(Player player, String[] args) {
         if (args.length > 1) {
@@ -39,5 +28,16 @@ public class JoinServer extends Spell {
                 }
             }
         }
+    }
+
+    private void joinServer(Player player, String server) {
+        ByteArrayOutputStream b = new ByteArrayOutputStream();
+        DataOutputStream out = new DataOutputStream(b);
+        try {
+            out.writeUTF("Connect");
+            out.writeUTF(server); // Target Server
+        } catch (IOException e) {
+        }
+        player.sendPluginMessage(MagicApi.getMainPlugin(), "BungeeCord", b.toByteArray());
     }
 }

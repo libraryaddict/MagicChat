@@ -7,10 +7,16 @@ import me.libraryaddict.magic.types.Spell;
 
 public class MagicApi {
     private static ArrayList<ChatSpell> chatSpells = new ArrayList<ChatSpell>();
+    private static MagicChat mainPlugin;
+
     private static ArrayList<Spell> spells = new ArrayList<Spell>();
 
     public static ArrayList<ChatSpell> getChatSpells() {
         return chatSpells;
+    }
+
+    public static MagicChat getMainPlugin() {
+        return mainPlugin;
     }
 
     public static Spell getSpell(String spellName) {
@@ -43,12 +49,6 @@ public class MagicApi {
         } else {
             throw new RuntimeException("[MagicChat] The magic spell " + spell.getName() + " has already been registered!");
         }
-    }
-
-    private static MagicChat mainPlugin;
-
-    public static MagicChat getMainPlugin() {
-        return mainPlugin;
     }
 
     public static void setMainPlugin(MagicChat magicChat) {

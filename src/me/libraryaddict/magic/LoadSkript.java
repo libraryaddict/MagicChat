@@ -24,6 +24,9 @@ public class LoadSkript {
             }
         }, 0);
         Skript.registerExpression(ExprSpellName.class, String.class, ExpressionType.SIMPLE, "spell", "spell name");
-        Skript.registerExpression(ExprSpellArgs.class, String.class, ExpressionType.SIMPLE, "args", "spell args");
+        Skript.registerExpression(ExprSpellArgs.class, String.class, ExpressionType.SIMPLE, "[the] last spell arg[ument][s]",
+                "[the] spell arg[ument][s](-| )<(\\d+)>", "[the] <(\\d*1)st|(\\d*2)nd|(\\d*3)rd|(\\d*[4-90])th> spell arg[ument][s]",
+                "[the] spell arg[ument][s]", "[the] %*classinfo%( |-)spell arg[ument][( |-)<\\d+>]",
+                "[the] spell arg[ument]( |-)%*classinfo%[( |-)<\\d+>]");
     }
 }
